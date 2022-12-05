@@ -12,10 +12,13 @@
 ## 設定
 [MCNetEngine/config.json](https://github.com/FanYueee/MCNetEngine/blob/main/config.json)
 ```yaml
-{  
-  "token": ""  # Discord Bot Token
+{  		
+  "token": ""
 }
 ```
+設定欄位介紹
+
+"Token": "Discord Bot Token"
 
 ## 功能
 * /mcs \<IP>  - 查詢 Minecraft 伺服器資訊（限 Java 版本）
