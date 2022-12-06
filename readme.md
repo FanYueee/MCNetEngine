@@ -13,25 +13,29 @@
 [MCNetEngine/config.json](https://github.com/FanYueee/MCNetEngine/blob/main/config.json)
 ```yaml
 {  		
+  "ver": ""
   "token": ""
 }
 ```
-設定欄位介紹
+### 設定欄位介紹
 
-"Token": "Discord Bot Token"
+"ver": "版本號"
+
+"token": "Discord Bot Token"
 
 ## 功能
 * /mcs \<IP>  - 查詢 Minecraft 伺服器資訊（限 Java 版本）
-	* 人數
-	* MOTD
-	* 伺服器版本
-	* Protocol 版本
-	* 原始IP/Port
-	* 主機名稱
-	* IP 國家
-	* ASN
-	* ISP
-	* 組織
+    * 人數
+    * MOTD
+    * 伺服器版本
+    * Protocol 版本
+    * 原始IP/Port
+    * 主機名稱
+    * IP 國家
+    * ASN
+    * ISP
+    * 組織
+* /debug - 機器人資訊
 
 ## 使用的 API
 查詢 Minecraft 伺服器相關資訊－https://api.mcsrvstat.us/
