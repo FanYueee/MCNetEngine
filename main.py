@@ -1,5 +1,3 @@
-import time
-
 import discord
 from discord.commands import option
 import json
@@ -32,7 +30,7 @@ async def on_ready():
 # 指令主體
 @client.slash_command(description = "查詢Minecraft伺服器資訊")
 @option("ip",description = "輸入欲查詢的伺服器IP")
-async def mc(ctx, ip: str):
+async def mcs(ctx, ip: str):
     try:
     # 偵測前三個字是否為127開頭，如果是直接回應錯誤(內網)
         if ip[0:3] != "127":
