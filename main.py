@@ -8,7 +8,7 @@ intents = discord.Intents.default()
 client = discord.Bot(intents=intents)
 
 # 設定
-token = "MTEzNzI2MzY4NzgwNDEyOTI5MA.G7uhzj.wJGelcA1V_idBVWPCPOjr6kzhHWETh0_NmTGEY"
+token = ""
 ver = "1.3.1"
 Name = "MCNetEngine"
 
