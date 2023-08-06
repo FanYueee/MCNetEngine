@@ -7,8 +7,9 @@ import base64
 intents = discord.Intents.default()
 client = discord.Bot(intents=intents)
 
+# 設定
 token = ""
-ver = "1.3"
+ver = "1.3.1"
 Name = "MCNetEngine"
 
 print("  __  __  _____ _   _      _   ______             _             ")
@@ -25,6 +26,7 @@ print(f"Required API: api.mcsrvstat.us, ip-api.com  |___/       Ver {ver}")
 @client.event
 async def on_ready():
     print(f"\n已成功啟動 {client.user}")
+    await client.change_presence(activity=discord.Activity(type=discord.ActivityType.watching, name="你打的指令"),status=discord.Status.idle)
 
 # 指令主體
 @client.slash_command(description = "查詢 Minecraft 伺服器資訊")
@@ -38,13 +40,16 @@ async def mcs(ctx, ip: str):
         Hostname = IPStatus['hostname'] if 'hostname' in IPStatus else '無'
         IPInfo = requests.get('http://ip-api.com/json/' + IP)
         IPInfo = IPInfo.json()
+
         if IPInfo['status'] != "fail":
+
             Location = IPInfo['country'] + ", " + IPInfo['city']
             AS = IPInfo['as']
             ISP = IPInfo['isp']
 
         if IP[0:3] != "127":
             if IPStatus['online'] == True:
+
                 PlayerOnline = IPStatus['players']['online']
                 PlayerMax = IPStatus['players']['max']
                 Version = IPStatus['version']
@@ -54,6 +59,7 @@ async def mcs(ctx, ip: str):
                 Motd = Motd1 + "\n" + Motd2 if Motd2 != None else Motd1
                 Status = f"<:accept:1045921746219450389> **__在線__** \n> 伺服器人數：{PlayerOnline}/{PlayerMax}\n> 伺服器版本：{Version}\n> 真實 IP：{IP}:{Port}\n> Protocol 版本：{Protocol}\n```{Motd}```"
                 Color = 0x55ff55
+
             else:
                 Status = "<:cancel:1045921758215163924> **__離線__**"
                 Color = 0xff5555
@@ -63,8 +69,10 @@ async def mcs(ctx, ip: str):
 
             IPBEStatus = requests.get('https://api.mcsrvstat.us/bedrock/2/' + ip)
             IPBEStatus = IPBEStatus.json()
+
             IPBE = IPBEStatus['ip']
             PortBE = IPBEStatus['port']
+
             if IPBEStatus['online'] == True:
 
                 PlayerOnlineBE = IPBEStatus['players']['online']
@@ -76,23 +84,26 @@ async def mcs(ctx, ip: str):
                 MotdBE = Motd1BE + "\n" + Motd2BE if Motd2BE != None else Motd1BE
                 StatusBE = f"<:accept:1045921746219450389> **__在線__** \n> 伺服器人數：{PlayerOnlineBE}/{PlayerMaxBE}\n> 伺服器版本：{VersionBE}\n> 真實 IP：{IPBE}:{PortBE}\n> Protocol 版本：{ProtocolBE}\n```{MotdBE}```"
                 Color = 0x55ff55
+
             else:
+
                 StatusBE = "<:cancel:1045921758215163924> **__離線__**"
                 Color = 0xff5555
 
             embedBE = discord.Embed(title=f"{ip}",description=f"> {StatusBE}",color=Color)
-            embedBE.set_author(name=f"Minecraft 通用伺服器查詢 ➼ IP 資訊 ➼ {ip}",url=f"https://mcsrvstat.us/bedrock/{ip}",icon_url="https://cdn-vproxy.pages.dev/vproxy_logo.png")
+            embedBE.set_author(name=f"Minecraft 通用伺服器查詢 ➼ Bedrock ➼ {ip}",url=f"https://mcsrvstat.us/bedrock/{ip}",icon_url="https://cdn-vproxy.pages.dev/vproxy_logo.png")
 
             embedIPINFO = discord.Embed(title=f"", description=f"", color=0x2b2d31,timestamp=datetime.datetime.now())
-            embedIPINFO.set_author(name=f"Minecraft 通用伺服器查詢 ➼ Bedrock ➼ {ip}",url=f"https://mcsrvstat.us/bedrock/{ip}",icon_url="https://cdn-vproxy.pages.dev/vproxy_logo.png")
+            embedIPINFO.set_author(name=f"Minecraft 通用伺服器查詢 ➼ IP 資訊 ➼ {ip}",url=f"https://mcsrvstat.us/bedrock/{ip}",icon_url="https://cdn-vproxy.pages.dev/vproxy_logo.png")
             embedIPINFO.add_field(name=f"真實 IP：{IP}", value="", inline=False)
             embedIPINFO.add_field(name=f"位置：{Location}", value="", inline=False)
             embedIPINFO.add_field(name=f"主機名稱 ：{Hostname}", value="", inline=False)
             embedIPINFO.add_field(name=f"AS：{AS}", value="", inline=False)
             embedIPINFO.add_field(name=f"ISP：{ISP}", value="", inline=False)
             embedIPINFO.set_footer(text=f"{Name}")
+
             await ctx.edit(content="<a:icon_yes_animated:1067441695769239552> 查詢成功",embeds=[embedJE,embedBE,embedIPINFO])
-            
+
         else:
             await ctx.edit(content="<a:icon_no_animated:1067441718506565642> 查詢失敗，請重新檢查您的 IP 是否有誤。")
 
