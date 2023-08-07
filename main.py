@@ -9,7 +9,7 @@ client = discord.Bot(intents=intents)
 
 # 設定
 token = ""
-ver = "1.3.4"
+ver = "1.3.5"
 Name = "MCNetEngine"
 
 print("  __  __  _____ _   _      _   ______             _             ")
@@ -32,6 +32,7 @@ async def on_ready():
 @client.slash_command(description = "查詢 Minecraft 伺服器資訊")
 @option("ip",description = "輸入欲查詢的伺服器 IP")
 async def mcs(ctx, ip: str):
+        StartTime = datetime.datetime.now()
         await ctx.respond(":bar_chart: 正在查詢中...")
         IPStatus = requests.get('https://api.mcsrvstat.us/2/' + ip)
         IPStatus = IPStatus.json()
@@ -112,11 +113,14 @@ async def mcs(ctx, ip: str):
             embedIPINFO.add_field(name=f"AS：{AS}", value="", inline=False)
             embedIPINFO.add_field(name=f"ISP：{ISP}", value="", inline=False)
             embedIPINFO.set_footer(text=f"{Name}")
-            await ctx.edit(file=ICONJE, content=":white_check_mark: 查詢成功", embeds=[embedJE, embedBE, embedIPINFO]) if ICONJE else await ctx.edit(content="<a:icon_yes_animated:1067441695769239552> 查詢成功", embeds=[embedJE, embedBE, embedIPINFO])
-
+            EndTime = datetime.datetime.now()
+            Time = (EndTime - StartTime).total_seconds()
+            await ctx.edit(file=ICONJE, content=f":white_check_mark: 查詢成功（用時 {Time} 秒）", embeds=[embedJE, embedBE, embedIPINFO]) if ICONJE else await ctx.edit(content=f"<a:icon_yes_animated:1067441695769239552> 查詢成功（用時 {Time} 秒）", embeds=[embedJE, embedBE, embedIPINFO])
 
         else:
-            await ctx.edit(content=":x: 查詢失敗，請重新檢查您的 IP 是否有誤。")
+            EndTime = datetime.datetime.now()
+            Time = (EndTime - StartTime).total_seconds()
+            await ctx.edit(content=f":x: 查詢失敗，請重新檢查您的 IP 是否有誤。（用時 {Time} 秒）")
 
 # 機器人資訊&多此一舉的設計
 @client.slash_command(description = "機器人資訊")
