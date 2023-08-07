@@ -9,7 +9,7 @@ client = discord.Bot(intents=intents)
 
 # 設定
 token = ""
-ver = "1.3.3"
+ver = "1.3.4"
 Name = "MCNetEngine"
 
 print("  __  __  _____ _   _      _   ______             _             ")
@@ -32,7 +32,7 @@ async def on_ready():
 @client.slash_command(description = "查詢 Minecraft 伺服器資訊")
 @option("ip",description = "輸入欲查詢的伺服器 IP")
 async def mcs(ctx, ip: str):
-        await ctx.respond("<a:loading:1108348027221065758> 正在查詢中...")
+        await ctx.respond(":bar_chart: 正在查詢中...")
         IPStatus = requests.get('https://api.mcsrvstat.us/2/' + ip)
         IPStatus = IPStatus.json()
         IP = IPStatus['ip']
@@ -67,16 +67,16 @@ async def mcs(ctx, ip: str):
                 Motd1 = IPStatus['motd']['clean'][0]
                 Motd2 = IPStatus['motd']['clean'][1] if 'motd' in IPStatus and 'clean' in IPStatus['motd'] and len(IPStatus['motd']['clean']) > 1 else None
                 Motd = Motd1 + "\n" + Motd2 if Motd2 != None else Motd1
-                Status = f"<:accept:1045921746219450389> **__在線__** \n> 伺服器人數：{PlayerOnline}/{PlayerMax}\n> 伺服器版本：{Version}\n> 真實 IP：{IP}:{Port}\n> Protocol 版本：{Protocol}\n```{Motd}```"
+                Status = f":white_check_mark: **__在線__** \n> 伺服器人數：{PlayerOnline}/{PlayerMax}\n> 伺服器版本：{Version}\n> 真實 IP：{IP}:{Port}\n> Protocol 版本：{Protocol}\n```{Motd}```"
                 Color = 0x55ff55
 
             else:
-                Status = "<:cancel:1045921758215163924> **__離線__**"
+                Status = ":x: **__離線__**"
                 Color = 0xff5555
 
             embedJE = discord.Embed(title=f"{ip}",description=f"> {Status}",color=Color)
             embedJE.set_thumbnail(url="attachment://ICONJE.png")
-            embedJE.set_author(name=f"Minecraft 通用伺服器查詢 ➼ Java ➼ {ip}", url=f"https://mcsrvstat.us/server/{ip}",icon_url="https://cdn-vproxy.pages.dev/vproxy_logo.png")
+            embedJE.set_author(name=f"Minecraft 通用伺服器查詢 ➼ Java ➼ {ip}", url=f"https://mcsrvstat.us/server/{ip}",icon_url="https://cdn-vproxy.pages.dev/GrassBlock.png")
 
             IPBEStatus = requests.get('https://api.mcsrvstat.us/bedrock/2/' + ip)
             IPBEStatus = IPBEStatus.json()
@@ -102,21 +102,21 @@ async def mcs(ctx, ip: str):
                 Color = 0xff5555
 
             embedBE = discord.Embed(title=f"{ip}",description=f"> {StatusBE}",color=Color)
-            embedBE.set_author(name=f"Minecraft 通用伺服器查詢 ➼ Bedrock ➼ {ip}",url=f"https://mcsrvstat.us/bedrock/{ip}",icon_url="https://cdn-vproxy.pages.dev/vproxy_logo.png")
+            embedBE.set_author(name=f"Minecraft 通用伺服器查詢 ➼ Bedrock ➼ {ip}",url=f"https://mcsrvstat.us/bedrock/{ip}",icon_url="https://cdn-vproxy.pages.dev/BDS.png")
 
             embedIPINFO = discord.Embed(title=f"", description=f"", color=0x2b2d31,timestamp=datetime.datetime.now())
-            embedIPINFO.set_author(name=f"Minecraft 通用伺服器查詢 ➼ IP 資訊 ➼ {ip}",url=f"https://mcsrvstat.us/bedrock/{ip}",icon_url="https://cdn-vproxy.pages.dev/vproxy_logo.png")
+            embedIPINFO.set_author(name=f"Minecraft 通用伺服器查詢 ➼ IP 資訊 ➼ {ip}",url=f"https://mcsrvstat.us/bedrock/{ip}",icon_url="https://cdn-vproxy.pages.dev/MCNetEngine.png")
             embedIPINFO.add_field(name=f"真實 IP：{IP}", value="", inline=False)
             embedIPINFO.add_field(name=f"位置：{Location}", value="", inline=False)
             embedIPINFO.add_field(name=f"主機名稱 ：{Hostname}", value="", inline=False)
             embedIPINFO.add_field(name=f"AS：{AS}", value="", inline=False)
             embedIPINFO.add_field(name=f"ISP：{ISP}", value="", inline=False)
             embedIPINFO.set_footer(text=f"{Name}")
-            await ctx.edit(file=ICONJE, content="<a:icon_yes_animated:1067441695769239552> 查詢成功", embeds=[embedJE, embedBE, embedIPINFO]) if ICONJE else await ctx.edit(content="<a:icon_yes_animated:1067441695769239552> 查詢成功", embeds=[embedJE, embedBE, embedIPINFO])
+            await ctx.edit(file=ICONJE, content=":white_check_mark: 查詢成功", embeds=[embedJE, embedBE, embedIPINFO]) if ICONJE else await ctx.edit(content="<a:icon_yes_animated:1067441695769239552> 查詢成功", embeds=[embedJE, embedBE, embedIPINFO])
 
 
         else:
-            await ctx.edit(content="<a:icon_no_animated:1067441718506565642> 查詢失敗，請重新檢查您的 IP 是否有誤。")
+            await ctx.edit(content=":x: 查詢失敗，請重新檢查您的 IP 是否有誤。")
 
 # 機器人資訊&多此一舉的設計
 @client.slash_command(description = "機器人資訊")
