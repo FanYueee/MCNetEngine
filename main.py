@@ -9,7 +9,7 @@ client = discord.Bot(intents=intents)
 
 # 設定
 token = ""
-ver = "1.3.1"
+ver = "1.3.3"
 Name = "MCNetEngine"
 
 print("  __  __  _____ _   _      _   ______             _             ")
@@ -28,12 +28,6 @@ async def on_ready():
     print(f"\n已成功啟動 {client.user}")
     await client.change_presence(activity=discord.Activity(type=discord.ActivityType.watching, name="你打的指令"),status=discord.Status.idle)
 
-# header, encoded_image = icon.split(",", 1)
-# datacc = base64.b64decode(encoded_image)
-# with open("temp_image.png", "wb") as f:
-#     f.write(datacc)
-# file = discord.File("temp_image.png")
-
 # 指令主體
 @client.slash_command(description = "查詢 Minecraft 伺服器資訊")
 @option("ip",description = "輸入欲查詢的伺服器 IP")
@@ -43,13 +37,16 @@ async def mcs(ctx, ip: str):
         IPStatus = IPStatus.json()
         IP = IPStatus['ip']
         Port = IPStatus['port']
+
         if 'icon' in IPStatus:
             ICONJE = IPStatus['icon']
             header, ICONJE = ICONJE.split(",", 1)
             ICONJE = base64.b64decode(ICONJE)
             with open("ICONJE.png", "wb") as f:
                 f.write(ICONJE)
-            file = discord.File("ICONJE.png")
+            ICONJE = discord.File("ICONJE.png")
+        else: ICONJE = None
+
         Hostname = IPStatus['hostname'] if 'hostname' in IPStatus else '無'
         IPInfo = requests.get('http://ip-api.com/json/' + IP)
         IPInfo = IPInfo.json()
@@ -78,13 +75,12 @@ async def mcs(ctx, ip: str):
                 Color = 0xff5555
 
             embedJE = discord.Embed(title=f"{ip}",description=f"> {Status}",color=Color)
-            embedJE.set_thumbnail(url="attachment://temp_image.png")
+            embedJE.set_thumbnail(url="attachment://ICONJE.png")
             embedJE.set_author(name=f"Minecraft 通用伺服器查詢 ➼ Java ➼ {ip}", url=f"https://mcsrvstat.us/server/{ip}",icon_url="https://cdn-vproxy.pages.dev/vproxy_logo.png")
 
             IPBEStatus = requests.get('https://api.mcsrvstat.us/bedrock/2/' + ip)
             IPBEStatus = IPBEStatus.json()
 
-            ICONBE = IPBEStatus['icon'] if 'icon' in IPBEStatus else None
             IPBE = IPBEStatus['ip']
             PortBE = IPBEStatus['port']
 
@@ -116,8 +112,8 @@ async def mcs(ctx, ip: str):
             embedIPINFO.add_field(name=f"AS：{AS}", value="", inline=False)
             embedIPINFO.add_field(name=f"ISP：{ISP}", value="", inline=False)
             embedIPINFO.set_footer(text=f"{Name}")
+            await ctx.edit(file=ICONJE, content="<a:icon_yes_animated:1067441695769239552> 查詢成功", embeds=[embedJE, embedBE, embedIPINFO]) if ICONJE else await ctx.edit(content="<a:icon_yes_animated:1067441695769239552> 查詢成功", embeds=[embedJE, embedBE, embedIPINFO])
 
-            await ctx.edit(file=file,content="<a:icon_yes_animated:1067441695769239552> 查詢成功",embeds=[embedJE,embedBE,embedIPINFO])
 
         else:
             await ctx.edit(content="<a:icon_no_animated:1067441718506565642> 查詢失敗，請重新檢查您的 IP 是否有誤。")
