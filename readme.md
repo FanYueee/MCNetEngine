@@ -1,32 +1,36 @@
 # DiscordBot MCNetEngine
-¤@­Ó¥iÂÇ¥Ñ Discord Bot ¬d¸ß Minecraft ¦øªA¾¹»P IP ¸ê°Tªº¾÷¾¹¤H¡C
+ä¸€å€‹å¯è—‰ç”± Discord Bot æŸ¥è©¢ Minecraft ä¼ºæœå™¨èˆ‡ IP è³‡è¨Šçš„æ©Ÿå™¨äººã€‚
 
-¨Ã¥B¶È»İ¤@­Ó«ü¥O§Y¥i¦P®É¬d¸ß Java & Bedrock ¦øªA¾¹¬ÛÃö¸ê°T¡C
+ä¸¦ä¸”åƒ…éœ€ä¸€å€‹æŒ‡ä»¤å³å¯åŒæ™‚æŸ¥è©¢ Java & Bedrock ä¼ºæœå™¨ç›¸é—œè³‡è¨Šã€‚
 
-**__ÁÜ½Ğ¾÷¾¹¤H__**¡G[ÂI§ÚÁÜ½Ğ](https://discord.com/api/oauth2/authorize?client_id=1137263687804129290&permissions=274878171136&scope=bot)
+æˆ‘ç›¸ä¿¡ä¹Ÿæ›´å¥½çœ‹ã€æ›´äººæ€§åŒ–ã€æ›´åŠ å®¹æ˜“é–±è®€ï¼Œå¥½è€¶ï¼
 
-## ¥\¯à
-* /mcs \<IP>  - ¬d¸ß Minecraft ¦øªA¾¹¸ê°T¡]Java & Bedrock¡^
-* /debug - ¾÷¾¹¤H¸ê°T
+ç†è«–ä¸Šä¸æœƒæ›´æ–°äº†ï¼Œé™¤éæœ‰å•é¡Œï¼Œæ‡‰è©²ä¹Ÿæ²’ä»€éº¼å¥½æ–°å¢çš„å§ã€‚
 
-### ¥\¯à®i¥Ü
+**__é‚€è«‹æ©Ÿå™¨äºº__**ï¼š[é»æˆ‘é‚€è«‹](https://discord.com/api/oauth2/authorize?client_id=1137263687804129290&permissions=274878171136&scope=bot)
+
+## åŠŸèƒ½
+* /mcs \<IP>  - æŸ¥è©¢ Minecraft ä¼ºæœå™¨è³‡è¨Šï¼ˆJava & Bedrockï¼‰
+* /debug - æ©Ÿå™¨äººè³‡è¨Š
+
+### åŠŸèƒ½å±•ç¤º
 ![image](mcs.png)
 
-## ¥²»İ¨ç¦¡®w
-¶È¥Nªí¶}µo®É¨Ï¥Îª©¥»¡A¤£¥Nªí¨ä¥Lª©¥»µLªk³¡¸p¡C
+## å¿…éœ€å‡½å¼åº«
+åƒ…ä»£è¡¨é–‹ç™¼æ™‚ä½¿ç”¨ç‰ˆæœ¬ï¼Œä¸ä»£è¡¨å…¶ä»–ç‰ˆæœ¬ç„¡æ³•éƒ¨ç½²ã€‚
 
-|¨ç¦¡®w¦WºÙ |ª©¥»|
+|å‡½å¼åº«åç¨± |ç‰ˆæœ¬|
 |-----|--------|
 |py-cord|2.3.1|
 |requests|2.28.1|
 
-## ³]©w
+## è¨­å®š
 [MCNetEngine/main.py](https://github.com/FanYueee/MCNetEngine/blob/main/main.py)
 
-¶È»İ³]©w¾÷¾¹¤Hªº Token §Y¥i¡C
+åƒ…éœ€è¨­å®šæ©Ÿå™¨äººçš„ Token å³å¯ã€‚
 
-## ¨Ï¥Îªº API
-¬d¸ß Minecraft ¦øªA¾¹¬ÛÃö¸ê°T¡Ğhttps://api.mcsrvstat.us/
+## ä½¿ç”¨çš„ API
+æŸ¥è©¢ Minecraft ä¼ºæœå™¨ç›¸é—œè³‡è¨Šï¼https://api.mcsrvstat.us/
 
-¬d¸ß IP ¬ÛÃö¸ê°T¡Ğhttp://ip-api.com/
+æŸ¥è©¢ IP ç›¸é—œè³‡è¨Šï¼http://ip-api.com/
 
